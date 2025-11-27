@@ -7,39 +7,22 @@
   <link rel="stylesheet" href="style.css">
   <script defer src="script.js"></script>
 </head>
-
 <body>
+  <div class="stars"></div>
+  <header class="top-bar">
+    <div class="logo">
+      <h1>Anton Kurchenko • Personal Schedule</h1>
+      <small>Internal school schedule panel</small>
+    </div>
+    <div class="clock"><span class="label">Зараз</span><span id="clock-time">--:--</span></div>
+  </header>
 
-<!-- АНИМИРОВАННЫЕ ЗВЁЗДЫ -->
-<div class="stars"></div>
+  <div class="profile-photo"><img src="photo.jpg" alt="Anton"></div>
 
-<header class="top-bar">
-  <div class="logo">
-    <h1>Anton Kurchenko • Personal Schedule</h1>
-    <small>Internal school schedule panel</small>
-  </div>
-
-  <div class="clock">
-    <span class="label">Зараз</span>
-    <span id="clock-time">--:--</span>
-  </div>
-</header>
-
-<!-- ПРОФИЛЬ -->
-<div class="profile-photo">
-  <img src="photo.jpg" alt="Anton">
-</div>
-
-<main>
-
-  <!-- РОЗКЛАД ДЗВІНКІВ -->
-  <section class="card">
-    <h2>⏰ Розклад дзвінків</h2>
-
-    <table class="table">
-      <thead>
-        <tr><th>№</th><th>Час</th><th>Статус</th></tr>
-      </thead>
+  <main>
+    <section class="card">
+      <h2>⏰ Розклад дзвінків</h2>
+      <table class="table"><thead><tr><th>№</th><th>Час</th><th>Статус</th></tr></thead>
       <tbody id="lessons-body">
         <tr data-lesson="1"><td>1</td><td>08:00 – 08:45</td><td></td></tr>
         <tr data-lesson="2"><td>2</td><td>08:55 – 09:40</td><td></td></tr>
@@ -49,18 +32,12 @@
         <tr data-lesson="6"><td>6</td><td>12:55 – 13:40</td><td></td></tr>
         <tr data-lesson="7"><td>7</td><td>13:45 – 14:30</td><td></td></tr>
         <tr data-lesson="8"><td>8</td><td>14:35 – 15:20</td><td></td></tr>
-      </tbody>
-    </table>
-  </section>
+      </tbody></table>
+    </section>
 
-  <!-- МІЙ РОЗКЛАД -->
-  <section class="card">
-    <h2>📘 Мій розклад (номери уроків)</h2>
-
-    <table class="table">
-      <thead>
-        <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr>
-      </thead>
+    <section class="card">
+      <h2>📘 Мій розклад (номери уроків)</h2>
+      <table class="table"><thead><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr></thead>
       <tbody>
         <tr><td>6</td><td>5</td><td>6</td><td>9</td><td>9</td></tr>
         <tr><td>5</td><td>6</td><td>3</td><td>6D</td><td>5D</td></tr>
@@ -68,17 +45,12 @@
         <tr><td>8</td><td>7</td><td>5</td><td>4</td><td>8</td></tr>
         <tr><td>7</td><td>–</td><td>6</td><td>–</td><td>–</td></tr>
         <tr><td>–</td><td>8</td><td>7</td><td>–</td><td>–</td></tr>
-      </tbody>
-    </table>
-  </section>
+      </tbody></table>
+    </section>
 
-  <!-- РОЗКЛАД 9 КЛАСУ -->
-  <section class="card">
-    <h2>🎓 Розклад 9 класу</h2>
-    <table class="table">
-      <thead>
-        <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr>
-      </thead>
+    <section class="card">
+      <h2>🎓 Розклад 9 класу</h2>
+      <table class="table"><thead><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr></thead>
       <tbody>
         <tr><td>Алгебра</td><td>Хімія</td><td>Мист.</td><td>Eng</td><td>Eng</td></tr>
         <tr><td>Фіз-ра</td><td>Хімія</td><td>Фіз-ра</td><td>Укр.м.</td><td>Фіз-ра</td></tr>
@@ -87,17 +59,12 @@
         <tr><td>Нім.м</td><td>Геом</td><td>Зар.літ</td><td>Біол</td><td>Іст.Вс</td></tr>
         <tr><td>Інформ</td><td>Геогр</td><td>Зар.літ</td><td>Інформ</td><td>Укр.літ</td></tr>
         <tr><td>Алгебра</td><td>Біолог</td><td>Eng</td><td>Укр.м</td><td>Виховна</td></tr>
-      </tbody>
-    </table>
-  </section>
+      </tbody></table>
+    </section>
+  </main>
 
-</main>
-
-<!-- ТЕЛЕГРАМ -->
-<a href="https://t.me/Toxi4ez" class="floating">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg">
-  @Toxi4ez
-</a>
-
+  <a href="https://t.me/Toxi4ez" class="floating">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"> @Toxi4ez
+  </a>
 </body>
 </html>
