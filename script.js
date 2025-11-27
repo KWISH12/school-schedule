@@ -1,13 +1,13 @@
 // --------- Конфиг дзвінків ---------
 const schedule = [
-  { lesson: 1, start: "08:00", end: "08:45" },
-  { lesson: 2, start: "08:55", end: "09:40" },
-  { lesson: 3, start: "09:50", end: "10:35" },
-  { lesson: 4, start: "10:55", end: "11:40" },
-  { lesson: 5, start: "12:00", end: "12:45" },
-  { lesson: 6, start: "12:55", end: "13:40" },
-  { lesson: 7, start: "13:45", end: "14:30" },
-  { lesson: 8, start: "14:35", end: "15:20" }
+  { lesson: 1, start: "08:00", end: "08:40" },
+  { lesson: 2, start: "08:50", end: "09:30" },
+  { lesson: 3, start: "09:40", end: "10:20" },
+  { lesson: 4, start: "10:40", end: "11:20" },
+  { lesson: 5, start: "11:40", end: "12:20" },
+  { lesson: 6, start: "12:30", end: "13:10" },
+  { lesson: 7, start: "13:15", end: "13:55" },
+  { lesson: 8, start: "14:00", end: "14:40" }
 ];
 
 function parseMinutes(str) {
@@ -306,3 +306,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupSettings();
 });
+
