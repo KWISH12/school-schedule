@@ -1,45 +1,152 @@
-/* === ГЛАВНЫЙ ФОН С АНИМАЦИЕЙ === */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at center, #2a0040, #0a0014, #000);
-    overflow-x: hidden;
-    animation: bgPulse 10s infinite alternate;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at center, #2a0040, #0a0014, #000);
+  animation: bgPulse 10s infinite alternate;
+  overflow-x: hidden;
+  color: #fff;
 }
 
-/* Мягкая пульсация */
 @keyframes bgPulse {
-    0% { background-size: 100% 100%; }
-    100% { background-size: 120% 120%; }
+  0% { background-size: 100% 100%; }
+  100% { background-size: 140% 140%; }
 }
 
-/* === АНИМИРОВАННЫЕ ЗВЁЗДЫ НЕОН === */
+/* === ЗВЁЗДЫ === */
 .stars {
-    pointer-events: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0; left: 0;
-    background: transparent;
-    overflow: hidden;
-    z-index: -1;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  overflow: hidden;
 }
 
 .stars span {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #c77dff;
-    border-radius: 50%;
-    animation: twinkle 2s infinite ease-in-out;
-    opacity: 0.7;
+  position: absolute;
+  width: 3px; height: 3px;
+  background: #c77dff;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
 }
 
 @keyframes twinkle {
-    0% { transform: scale(1); opacity: 0.6; }
-    50% { transform: scale(2); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.6; }
+  0% { opacity: .4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(2); }
+  100% { opacity: .4; transform: scale(1); }
 }
 
-/* Генерация 200 звёзд */
+/* TOP BAR */
+.top-bar {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #e8d1ff;
+  text-shadow: 0 0 10px #b57dff;
+}
+
+.logo small {
+  color: #c9aaff;
+}
+
+/* CLOCK */
+.clock {
+  font-size: 22px;
+  padding: 10px 20px;
+  background: #ffffff22;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  border: 1px solid #ffffff33;
+}
+
+#clock-time {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* PROFILE */
+.profile-photo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-photo img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 3px solid #c77dff;
+  box-shadow: 0 0 25px #c77dff88;
+  animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px #7b2cbf66; }
+  100% { box-shadow: 0 0 25px #c77dffcc; }
+}
+
+/* CARDS */
+.card {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 900px;
+  padding: 25px;
+  border-radius: 20px;
+  background: #ffffff15;
+  backdrop-filter: blur(10px);
+  border: 1px solid #ffffff22;
+  box-shadow: 0 0 20px #00000055;
+  transition: transform .2s;
+}
+
+/* 3D эффект */
+.card:hover {
+  transform: scale(1.02) rotateX(4deg) rotateY(4deg);
+}
+
+h2 {
+  margin-top: 0;
+  color: #e7c8ff;
+  text-shadow: 0 0 10px #c77dff;
+}
+
+/* TABLES */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid #ffffff22;
+  text-align: center;
+}
+
+/* TELEGRAM LINK */
+.floating {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: #ffffff22;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #ffffff33;
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.floating img {
+  width: 22px;
+}
