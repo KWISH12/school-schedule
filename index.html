@@ -8,63 +8,232 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="stars"></div>
-  <header class="top-bar">
-    <div class="logo">
-      <h1>Anton Kurchenko • Personal Schedule</h1>
-      <small>Internal school schedule panel</small>
+
+<div class="app">
+
+  <!-- Сайдбар -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="avatar-ring">
+        <img src="photo.jpg" alt="Anton">
+      </div>
+      <div class="sidebar-user">
+        <div class="nickname">Anton Kurchenko</div>
+        <div class="tag">@Toxi4ez</div>
+      </div>
     </div>
-    <div class="clock"><span class="label">Зараз</span><span id="clock-time">--:--</span></div>
-  </header>
 
-  <div class="profile-photo"><img src="photo.jpg" alt="Anton"></div>
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-target="dashboard">
+        <span>🏠</span> Головна
+      </button>
+      <button class="nav-btn" data-target="bells">
+        <span>⏰</span> Дзвінки
+      </button>
+      <button class="nav-btn" data-target="my-schedule">
+        <span>📘</span> Мій розклад
+      </button>
+      <button class="nav-btn" data-target="class-schedule">
+        <span>🎓</span> 9 клас
+      </button>
+      <button class="nav-btn" data-target="homework">
+        <span>📝</span> Домашка
+      </button>
+      <button class="nav-btn" data-target="notes">
+        <span>🧠</span> Нотатки
+      </button>
+      <button class="nav-btn" data-target="settings">
+        <span>⚙</span> Налаштування
+      </button>
+    </nav>
 
-  <main>
-    <section class="card">
-      <h2>⏰ Розклад дзвінків</h2>
-      <table class="table"><thead><tr><th>№</th><th>Час</th><th>Статус</th></tr></thead>
-      <tbody id="lessons-body">
-        <tr data-lesson="1"><td>1</td><td>08:00 – 08:45</td><td></td></tr>
-        <tr data-lesson="2"><td>2</td><td>08:55 – 09:40</td><td></td></tr>
-        <tr data-lesson="3"><td>3</td><td>09:50 – 10:35</td><td></td></tr>
-        <tr data-lesson="4"><td>4</td><td>10:55 – 11:40</td><td></td></tr>
-        <tr data-lesson="5"><td>5</td><td>12:00 – 12:45</td><td></td></tr>
-        <tr data-lesson="6"><td>6</td><td>12:55 – 13:40</td><td></td></tr>
-        <tr data-lesson="7"><td>7</td><td>13:45 – 14:30</td><td></td></tr>
-        <tr data-lesson="8"><td>8</td><td>14:35 – 15:20</td><td></td></tr>
-      </tbody></table>
+    <a href="https://t.me/Toxi4ez" target="_blank" class="sidebar-telegram">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="tg">
+      <span>@Toxi4ez</span>
+    </a>
+
+    <div class="sidebar-footer">
+      by Антон Курченко • v1
+    </div>
+  </aside>
+
+  <!-- Основная часть -->
+  <main class="main">
+
+    <!-- Верхняя панель -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 id="page-title">Головна панель</h1>
+        <p class="topbar-sub">Онлайн-дешборд по школі, щоб не забувати розклад</p>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-block">
+          <div class="topbar-label">Зараз час</div>
+          <div id="clock-time" class="topbar-value">--:--</div>
+        </div>
+        <div class="topbar-block">
+          <div class="topbar-label">Стан уроку</div>
+          <div id="lesson-status" class="topbar-value small">немає уроку</div>
+        </div>
+        <div class="topbar-block">
+          <div class="topbar-label">Наступний урок</div>
+          <div id="next-lesson" class="topbar-value small">-</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- СЕКЦИЯ: DASHBOARD -->
+    <section id="dashboard" class="section active">
+      <div class="grid">
+        <div class="card">
+          <h2>🔭 Сьогодні</h2>
+          <p id="today-text" class="today-text"></p>
+          <p class="muted">Тут ти бачиш загальний статус: який зараз урок, що далі і скільки ще сидіти на парі.</p>
+          <ul class="bullets">
+            <li>Автоматична підсвітка поточного уроку</li>
+            <li>Показ, скільки хвилин залишилось до дзвінка</li>
+            <li>Показ наступного уроку</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>📌 Сьогоднішні уроки (номери)</h2>
+          <table class="table mini-table">
+            <thead>
+              <tr><th>Пара</th><th>Номер</th></tr>
+            </thead>
+            <tbody id="today-lessons-body">
+              <!-- заполняется JS на основе таблицы "Мій розклад" -->
+            </tbody>
+          </table>
+          <p class="muted small">Редагувати повний розклад можна в розділі “Мій розклад”.</p>
+        </div>
+
+        <div class="card">
+          <h2>📝 Домашка на сьогодні</h2>
+          <textarea id="dash-hw" class="textarea small-textarea" placeholder="Коротко: що задали на сьогодні?"></textarea>
+          <p class="muted tiny">Зберігається тільки у твоєму браузері (localStorage).</p>
+        </div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>📘 Мій розклад (номери уроків)</h2>
-      <table class="table"><thead><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr></thead>
-      <tbody>
-        <tr><td>6</td><td>5</td><td>6</td><td>9</td><td>9</td></tr>
-        <tr><td>5</td><td>6</td><td>3</td><td>6D</td><td>5D</td></tr>
-        <tr><td>5</td><td>6</td><td>2</td><td>5D</td><td>6D</td></tr>
-        <tr><td>8</td><td>7</td><td>5</td><td>4</td><td>8</td></tr>
-        <tr><td>7</td><td>–</td><td>6</td><td>–</td><td>–</td></tr>
-        <tr><td>–</td><td>8</td><td>7</td><td>–</td><td>–</td></tr>
-      </tbody></table>
+    <!-- СЕКЦИЯ: ДЗВІНКИ -->
+    <section id="bells" class="section">
+      <div class="card">
+        <h2>⏰ Розклад дзвінків</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Час</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody id="lessons-body">
+            <tr data-lesson="1"><td>1</td><td>08:00 – 08:45</td><td></td></tr>
+            <tr data-lesson="2"><td>2</td><td>08:55 – 09:40</td><td></td></tr>
+            <tr data-lesson="3"><td>3</td><td>09:50 – 10:35</td><td></td></tr>
+            <tr data-lesson="4"><td>4</td><td>10:55 – 11:40</td><td></td></tr>
+            <tr data-lesson="5"><td>5</td><td>12:00 – 12:45</td><td></td></tr>
+            <tr data-lesson="6"><td>6</td><td>12:55 – 13:40</td><td></td></tr>
+            <tr data-lesson="7"><td>7</td><td>13:45 – 14:30</td><td></td></tr>
+            <tr data-lesson="8"><td>8</td><td>14:35 – 15:20</td><td></td></tr>
+          </tbody>
+        </table>
+        <p class="muted tiny">Статус і підсвітка рядка оновлюються автоматично кожні кілька секунд.</p>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>🎓 Розклад 9 класу</h2>
-      <table class="table"><thead><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr></thead>
-      <tbody>
-        <tr><td>Алгебра</td><td>Хімія</td><td>Мист.</td><td>Eng</td><td>Eng</td></tr>
-        <tr><td>Фіз-ра</td><td>Хімія</td><td>Фіз-ра</td><td>Укр.м.</td><td>Фіз-ра</td></tr>
-        <tr><td>Укр.літ</td><td>Фізика</td><td>Іст.Укр</td><td>Іст.Укр</td><td>Фізика</td></tr>
-        <tr><td>Інформ</td><td>Труд</td><td>Фізика</td><td>ОЗ</td><td>Геом</td></tr>
-        <tr><td>Нім.м</td><td>Геом</td><td>Зар.літ</td><td>Біол</td><td>Іст.Вс</td></tr>
-        <tr><td>Інформ</td><td>Геогр</td><td>Зар.літ</td><td>Інформ</td><td>Укр.літ</td></tr>
-        <tr><td>Алгебра</td><td>Біолог</td><td>Eng</td><td>Укр.м</td><td>Виховна</td></tr>
-      </tbody></table>
+    <!-- СЕКЦИЯ: МІЙ РОЗКЛАД -->
+    <section id="my-schedule" class="section">
+      <div class="card">
+        <h2>📘 Мій розклад (номери уроків)</h2>
+        <p class="muted small">Якщо номери уроків відрізняються — просто поміняй прямо в цій таблиці.</p>
+        <table class="table editable" id="table-my">
+          <thead>
+            <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr>
+          </thead>
+          <tbody>
+            <tr><td contenteditable="true">6</td><td contenteditable="true">5</td><td contenteditable="true">6</td><td contenteditable="true">9</td><td contenteditable="true">9</td></tr>
+            <tr><td contenteditable="true">5</td><td contenteditable="true">6</td><td contenteditable="true">3</td><td contenteditable="true">6D</td><td contenteditable="true">5D</td></tr>
+            <tr><td contenteditable="true">5</td><td contenteditable="true">6</td><td contenteditable="true">2</td><td contenteditable="true">5D</td><td contenteditable="true">6D</td></tr>
+            <tr><td contenteditable="true">8</td><td contenteditable="true">7</td><td contenteditable="true">5</td><td contenteditable="true">4</td><td contenteditable="true">8</td></tr>
+            <tr><td contenteditable="true">7</td><td contenteditable="true">-</td><td contenteditable="true">6</td><td contenteditable="true">-</td><td contenteditable="true">-</td></tr>
+            <tr><td contenteditable="true">-</td><td contenteditable="true">8</td><td contenteditable="true">7</td><td contenteditable="true">-</td><td contenteditable="true">-</td></tr>
+          </tbody>
+        </table>
+        <p class="muted tiny">Це просто таблиця номеров — для себе. Вона зберігається в браузері (localStorage).</p>
+      </div>
     </section>
+
+    <!-- СЕКЦІЯ: РОЗКЛАД 9 КЛАСУ -->
+    <section id="class-schedule" class="section">
+      <div class="card">
+        <h2>🎓 Розклад 9 класу (предмети)</h2>
+        <p class="muted small">Теж редагується — можеш під себе підганяти.</p>
+        <table class="table editable" id="table-class">
+          <thead>
+            <tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th></tr>
+          </thead>
+          <tbody>
+            <tr><td contenteditable="true">Алгебра</td><td contenteditable="true">Хімія</td><td contenteditable="true">Мист.</td><td contenteditable="true">Eng</td><td contenteditable="true">Eng</td></tr>
+            <tr><td contenteditable="true">Фіз-ра</td><td contenteditable="true">Хімія</td><td contenteditable="true">Фіз-ра</td><td contenteditable="true">Укр.м.</td><td contenteditable="true">Фіз-ра</td></tr>
+            <tr><td contenteditable="true">Укр.літ</td><td contenteditable="true">Фізика</td><td contenteditable="true">Іст.Укр</td><td contenteditable="true">Іст.Укр</td><td contenteditable="true">Фізика</td></tr>
+            <tr><td contenteditable="true">Інформ</td><td contenteditable="true">Труд</td><td contenteditable="true">Фізика</td><td contenteditable="true">ОЗ</td><td contenteditable="true">Геом</td></tr>
+            <tr><td contenteditable="true">Нім.м</td><td contenteditable="true">Геом</td><td contenteditable="true">Зар.літ</td><td contenteditable="true">Біол</td><td contenteditable="true">Іст.Вс</td></tr>
+            <tr><td contenteditable="true">Інформ</td><td contenteditable="true">Геогр</td><td contenteditable="true">Зар.літ</td><td contenteditable="true">Інформ</td><td contenteditable="true">Укр.літ</td></tr>
+            <tr><td contenteditable="true">Алгебра</td><td contenteditable="true">Біолог</td><td contenteditable="true">Eng</td><td contenteditable="true">Укр.м</td><td contenteditable="true">Виховна</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: ДОМАШКА -->
+    <section id="homework" class="section">
+      <div class="card">
+        <h2>📝 Домашні завдання</h2>
+        <p class="muted small">Можеш розписати по дням / предметам. Все зберігається в localStorage на цьому пристрої.</p>
+        <textarea id="hw-text" class="textarea big" placeholder="Напиши сюди всю домашку, щоб не забути..."></textarea>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: НОТАТКИ -->
+    <section id="notes" class="section">
+      <div class="card">
+        <h2>🧠 Особисті нотатки</h2>
+        <p class="muted small">Будь-які думки, плани, TODO, ідеї по Minecraft/серверу/життю :)</p>
+        <textarea id="notes-text" class="textarea big" placeholder="Місце для твоїх думок..."></textarea>
+      </div>
+    </section>
+
+    <!-- СЕКЦІЯ: НАЛАШТУВАННЯ -->
+    <section id="settings" class="section">
+      <div class="card">
+        <h2>⚙ Налаштування панелі</h2>
+        <div class="settings-row">
+          <div>
+            <h3>Тема</h3>
+            <p class="muted small">Світиться/не світиться.</p>
+          </div>
+          <div>
+            <button id="theme-default" class="btn">Неон</button>
+            <button id="theme-soft" class="btn secondary">Спокійна</button>
+          </div>
+        </div>
+        <div class="settings-row">
+          <div>
+            <h3>Очистити дані</h3>
+            <p class="muted small">Скинути домашку, нотатки, редаговані таблиці.</p>
+          </div>
+          <div>
+            <button id="clear-data" class="btn danger">Очистити все</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
+</div>
 
-  <a href="https://t.me/Toxi4ez" class="floating">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"> @Toxi4ez
-  </a>
 </body>
 </html>
